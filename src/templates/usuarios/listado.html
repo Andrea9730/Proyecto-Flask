@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title %} Mi Aplicación de Flask {% endblock %}
+
+{% block header %}Listado de Usuarios{% endblock %}
+
+{% block content %}
+    <div class="contenedor-boton-agregar">
+        <!-- 'agregar' es el nombre de la funcion en app.py -->
+        <a href="{{ url_for('agregar') }}" class="boton boton-agregar">Agregar</a>
+    </div>
+    
+    <!-- Tabla -->
+    <table class="tabla">
+        <thead>
+            <tr>
+                <th class="titulo-tabla">#</th>
+                <th class="titulo-tabla">CUIL</th>
+                <th class="titulo-tabla">Nombre de Usuario</th>
+                <th class="titulo-tabla">Direccion</th>
+                <th class="titulo-tabla">Email</th>
+                <th class="titulo-tabla">Nivel Acceso</th>
+                <th class="titulo-tabla">Editar</th>
+                <th class="titulo-tabla">Borrar</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for d in data %}
+                <tr class="fila-datos">
+                    <td>{{d.idUsuarios}}</td>
+                    <td>{{d.cuil}}</td>
+                    <td>{{d.nombre}}</td>
+                    <td>{{d.direccion}}</td>
+                    <td>{{d.email}}</td>
+                    <td>{{d.nivelAcc}}</td>
+                    <td><button class="boton boton-editar" id="btn-edit{{ d.idUsuarios }}" data-bs-toggle="modal" data-bs-target="#modal{{ d.idUsuarios }}">Editar</button></td>
+                    <td><a href="{{ url_for('borrar', id=d.idUsuarios) }}" class="boton boton-borrar">Borrar</a></td>
+                </tr>
+                <!-- modal -->
+                <div class="modal fade" id="modal{{ d.idUsuarios }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title fs-5" id="exampleModalLabel">{{ d.nombre }}</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                        
+                            <div class="modal-body">
+                                <form action="/editar/{{ d.idUsuarios }}" method="post">
+                                    <label>Nombre</label>
+                                    <input type="text" class="form-control mb-3" name="nombre" value="{{ d.nombre }}">
+                                    <label>Dirección</label>
+                                    <input type="text" class="form-control mb-3" name="direccion" value="{{ d.direccion }}">
+                                    <label>Email</label>
+                                    <input type="email" class="form-control mb-3" name="email" value="{{ d.email }}">
+                                    <div class="modal-footer">
+                                    <label>Nivel Acceso</label>
+                                    <input type="number" class="form-control mb-3" name="nivel_acc" value="{{ d.nivelAcc }}">
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary">Grabar Cambios</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

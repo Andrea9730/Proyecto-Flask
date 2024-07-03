@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title %} Mi Aplicación de Flask {% endblock %}
+
+{% block header %}Listado de Profesionales{% endblock %}
+
+{% block content %}
+    <div class="contenedor-boton-agregar">
+        <!-- 'agregar_profesional' es el nombre de la funcion en app.py -->
+        <a href="{{ url_for('agregar_profesional') }}" class="boton boton-agregar">Agregar</a>
+    </div>
+    
+    <!-- Tabla -->
+    <table class="tabla">
+        <thead>
+            <tr>
+                <th class="titulo-tabla">#</th>
+                <th class="titulo-tabla">CUIL</th>
+                <th class="titulo-tabla">Nombre</th>
+                <th class="titulo-tabla">Matricula</th>
+                <th class="titulo-tabla">Dirección</th>
+                <th class="titulo-tabla">Nivel Acceso</th>
+                <th class="titulo-tabla">Especialidad</th>
+                <th class="titulo-tabla">Editar</th>
+                <th class="titulo-tabla">Borrar</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for d in data %}
+                <tr class="fila-datos">
+                    <td>{{d.idProfesionales}}</td>
+                    <td>{{d.cuil}}</td>
+                    <td>{{d.nombre}}</td>
+                    <td>{{d.matricula}}</td>
+                    <td>{{d.direccion}}</td>
+                    <td>{{d.nivelAcc}}</td>
+                    <td>{{d.especialidad}}</td>
+                    <td><button class="boton boton-editar" id="btn-edit{{ d.idProfesionales }}" data-bs-toggle="modal" data-bs-target="#modal{{ d.idProfesionales }}">Editar</button></td>
+                    <td><a href="{{ url_for('borrar_profesional', id=d.idProfesionales) }}" class="boton boton-borrar">Borrar</a></td>
+                </tr>
+                <!-- modal -->
+                <div class="modal fade" id="modal{{ d.idProfesionales }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title fs-5" id="exampleModalLabel">{{ d.nombre }}</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                        
+                            <div class="modal-body">
+                                <form action="/editar_profesional/{{ d.idProfesionales }}" method="post">
+                                    <label>Nombre</label>
+                                    <input type="text" class="form-control mb-3" name="nombre" value="{{ d.nombre }}">
+                                    <label>Dirección</label>
+                                    <input type="text" class="form-control mb-3" name="direccion" value="{{ d.direccion }}">
+                                    <label>Especialidad</label>
+                                    <input type="text" class="form-control mb-3" name="especialidad" value="{{ d.especialidad }}">
+                                    
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary">Grabar Cambios</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+
+{% block title %} Agregar Profesional {% endblock %}
+
+{% block header %}Agregar Profesional{% endblock %}
+
+
+
+{% block content %}
+    <form action="{{ url_for('addProfessional')}}" id="form-agregar" method="post">
+        <label class="form-label">Id</label>
+        <input type="number" class="form-control mb-3" name="id">
+        <label class="form-label">CUIL</label>
+        <input type="number" class="form-control mb-3" name="cuil">
+        <label class="form-label">Nombre</label>
+        <input type="text" class="form-control mb-3" name="nombre">
+        <label class="form-label">Matricula</label>
+        <input type="text" class="form-control mb-3" name="matricula">
+        <label class="form-label">Dirección</label>
+        <input type="text" class="form-control mb-3" name="direccion">
+        <label class="form-label">Nivel Acceso</label>
+        <input type="number" class="form-control mb-3" name="nivel_acc">
+        <label class="form-label">Especialidad</label>
+        <input type="text" class="form-control mb-3" name="especialidad">
+        <div class="contenedor-form-boton">
+            <button type="submit" class="btn btn-primary">Agregar</button>
+        </div>
+    </form>
+{% endblock %}

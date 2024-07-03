@@ -1,0 +1,103 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header{
+    padding: 10px;
+    background-color: crimson;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.titulo-principal{
+    color: whitesmoke;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 900;
+    margin: 15px;
+}
+
+main{
+    padding: 30px;
+}
+
+.tabla{
+    margin: 10px auto;
+    border-collapse: collapse;
+}
+
+.titulo-tabla:first-of-type{
+    border-radius: 10px 0 0 0;
+}
+.titulo-tabla:last-of-type{
+    border-radius: 0 10px 0 0;
+}
+.fila-datos:nth-child(odd){
+    background-color: lightgrey;
+}
+
+.titulo-tabla, td{
+    padding: 10px 15px;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+}
+
+.titulo-tabla{
+    font-weight: 500;
+    background-color: #333;
+    color: whitesmoke;
+}
+
+.contenedor-boton-agregar{
+    text-align: left;
+    margin: 20px 0;
+}
+
+.boton{
+    padding: 10px 15px;
+    color: whitesmoke;
+    border-style: none;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 85px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+}
+.boton-menu{
+    background-color: blueviolet;
+    text-decoration: none;
+    font-weight: 900;
+}
+
+.boton-agregar{
+    background-color: green;
+    width: 98px;
+    text-decoration: none;
+}
+.boton-editar{
+    background-color: blue;
+}
+.boton-borrar{
+    background-color: red;
+    text-decoration: none;
+}
+
+/****************** AGREGAR USUARIO *****************/
+form{
+    min-width: 180px;
+    max-width: 300px;
+    margin: 20px auto;
+    padding: 20px 25px;
+    background-color: slategrey;
+    border-radius: 10px;
+}
+.form-label{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    color: whitesmoke;
+}
+.contenedor-form-boton{
+    text-align: center;
+}

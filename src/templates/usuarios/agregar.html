@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+
+{% block title %} Agregar Usuario {% endblock %}
+
+{% block header %}Agregar Usuario{% endblock %}
+
+
+
+{% block content %}
+    <form action="{{ url_for('addUser')}}" id="form-agregar" method="post">
+        <label class="form-label">Id</label>
+        <input type="number" class="form-control mb-3" name="id">
+        <label class="form-label">CUIL</label>
+        <input type="number" class="form-control mb-3" name="cuil">
+        <label class="form-label">Nombre</label>
+        <input type="text" class="form-control mb-3" name="nombre">
+        <label class="form-label">Dirección</label>
+        <input type="text" class="form-control mb-3" name="direccion">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-control mb-3" name="email">
+        <label class="form-label">Nivel Acceso</label>
+        <input type="number" class="form-control mb-3" name="nivel_acc">
+        <div class="contenedor-form-boton">
+            <button type="submit" class="btn btn-primary">Agregar</button>
+        </div>
+    </form>
+{% endblock %}
